@@ -1,4 +1,5 @@
 import type { NewsArticle } from "@workspace/api-client-react";
+import { trimSummary } from "@/lib/utils";
 
 interface FeaturedCardProps {
   article: NewsArticle;
@@ -31,13 +32,13 @@ export function FeaturedCard({ article }: FeaturedCardProps) {
         </div>
 
         {/* Headline */}
-        <h2 className="text-[2rem] sm:text-[2.4rem] font-bold leading-tight text-foreground tracking-[-0.02em]">
+        <h2 className="text-[2rem] sm:text-[2.4rem] font-bold italic leading-tight text-foreground tracking-[-0.02em]" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
           {article.headline}
         </h2>
 
         {/* Summary */}
-        <p className="text-[17px] text-muted-foreground leading-relaxed max-w-3xl">
-          {article.summary}
+        <p className="text-[18.5px] text-muted-foreground leading-relaxed max-w-3xl">
+          {trimSummary(article.summary)}
         </p>
 
         {/* Footer */}
