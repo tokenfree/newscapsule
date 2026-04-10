@@ -32,22 +32,13 @@ export function FeaturedCard({ article }: FeaturedCardProps) {
         </div>
 
         {/* Headline */}
-<<<<<<< HEAD
-        <h2 className="text-[2rem] sm:text-[2.4rem] font-bold leading-tight text-foreground tracking-[-0.02em]">
-=======
         <h2 className="text-[2rem] sm:text-[2.4rem] font-bold italic leading-tight text-foreground tracking-[-0.02em]" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
->>>>>>> a624b6a (chore: update news capsule files)
           {article.headline}
         </h2>
 
         {/* Summary */}
-<<<<<<< HEAD
-        <p className="text-[17px] text-muted-foreground leading-relaxed max-w-3xl">
-          {article.summary}
-=======
         <p className="text-[18.5px] text-muted-foreground leading-relaxed max-w-3xl">
           {trimSummary(article.summary)}
->>>>>>> a624b6a (chore: update news capsule files)
         </p>
 
         {/* Footer */}

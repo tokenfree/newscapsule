@@ -45,22 +45,13 @@ export function NewsCard({ article, index }: NewsCardProps) {
         </div>
 
         {/* Headline */}
-<<<<<<< HEAD
-        <h3 className="text-[19px] font-semibold leading-snug text-foreground tracking-[-0.01em]">
-=======
         <h3 className="text-[19px] font-semibold italic leading-snug text-foreground tracking-[-0.01em]" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
->>>>>>> a624b6a (chore: update news capsule files)
           {article.headline}
         </h3>
 
         {/* Summary */}
-<<<<<<< HEAD
-        <p className="text-[15px] text-muted-foreground leading-relaxed flex-1">
-          {article.summary}
-=======
         <p className="text-[16.5px] text-muted-foreground leading-relaxed flex-1">
           {trimSummary(article.summary)}
->>>>>>> a624b6a (chore: update news capsule files)
         </p>
 
         {/* Footer */}
