@@ -11,7 +11,7 @@
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",
-    "render:build": "npm install -g pnpm && pnpm install --frozen-lockfile && BASE_PATH=/ PORT=10000 pnpm --filter @workspace/current-news run build && pnpm --filter @workspace/api-server run build",
+    "render:build": "npm install -g pnpm && pnpm install --no-frozen-lockfile && BASE_PATH=/ PORT=10000 pnpm --filter @workspace/current-news run build && pnpm --filter @workspace/api-server run build",
     "render:start": "PORT=10000 node --enable-source-maps ./artifacts/api-server/dist/index.mjs"
   },
   "private": true,
