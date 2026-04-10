@@ -12,7 +12,7 @@ export function Header({ onShowNews, newsVisible }: HeaderProps) {
       {/* Left — live indicator */}
       <div className="flex items-center gap-2.5">
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full glass-card">
-          <div className="w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400 pulse-dot" />
+          <div className="w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400" />
           <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-muted-foreground">Live</span>
         </div>
         <span className="hidden sm:block text-[11px] text-muted-foreground font-mono opacity-60">{weekOf}</span>
