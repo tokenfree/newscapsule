@@ -21,30 +21,25 @@ export function NewsCard({ article, index }: NewsCardProps) {
   const staggerClass = `stagger-${Math.min(index + 1, 8)}`;
 
   return (
-    <article className={`news-card glass-card flex flex-col overflow-hidden ${staggerClass}`}>
+    <article className={`news-card glass-card news-card-sharp flex flex-col overflow-hidden ${staggerClass}`}>
       {/* Top color bar */}
       <div className="h-[4px] w-full flex-shrink-0" style={{ background: article.categoryColor }} />
 
       <div className="flex flex-col flex-1 p-7 gap-5">
         {/* Meta */}
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span
-              className="text-[13px] font-semibold tracking-wide uppercase px-3 py-1.5"
-              style={{ color: article.categoryColor, background: `${article.categoryColor}18`, border: `1px solid ${article.categoryColor}35` }}
-            >
-              {article.category}
-            </span>
-            <span
-              className={`text-[13px] font-semibold tracking-wide uppercase px-3 py-1.5 ${
-                SIGNIFICANCE_STYLES[article.significance] ?? SIGNIFICANCE_STYLES.medium
-              }`}
-            >
-              {SIGNIFICANCE_LABELS[article.significance] ?? "Medium"}
-            </span>
-          </div>
-          <span className="text-[13px] text-muted-foreground font-mono flex-shrink-0">
-            {article.readTime}m
+        <div className="flex items-center gap-2 flex-wrap">
+          <span
+            className="text-[13px] font-semibold tracking-wide uppercase px-3 py-1.5"
+            style={{ color: article.categoryColor, background: `${article.categoryColor}18`, border: `1px solid ${article.categoryColor}35` }}
+          >
+            {article.category}
+          </span>
+          <span
+            className={`text-[13px] font-semibold tracking-wide uppercase px-3 py-1.5 ${
+              SIGNIFICANCE_STYLES[article.significance] ?? SIGNIFICANCE_STYLES.medium
+            }`}
+          >
+            {SIGNIFICANCE_LABELS[article.significance] ?? "Medium"}
           </span>
         </div>
 
