@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Current News"
+version = "1.0.0"
+id = "artifacts/current-news"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 26023
+
+[services.development]
+run = "pnpm --filter @workspace/current-news run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/current-news", "run", "build" ]
+publicDir = "artifacts/current-news/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "26023"
+BASE_PATH = "/"
