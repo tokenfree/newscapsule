@@ -88,7 +88,7 @@ export function NewsGrid() {
               )}
               {!isLoading && lastFetched && (
                 <div className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400 pulse-dot" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400" />
                   {lastFetched}
                 </div>
               )}
