@@ -13,10 +13,10 @@ export function CategoryFilter({ articles, selected, onSelect }: CategoryFilterP
     <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 flex-wrap">
       <button
         onClick={() => onSelect(null)}
-        className={`flex-shrink-0 text-xs font-semibold px-3.5 py-1.5 rounded-lg border transition-all duration-150 ${
+        className={`flex-shrink-0 text-[11px] font-semibold tracking-wide uppercase px-3.5 py-1.5 rounded-full transition-all duration-150 ${
           selected === null
-            ? "bg-foreground text-background border-foreground"
-            : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 bg-background/60"
+            ? "glass-card text-foreground"
+            : "text-muted-foreground hover:text-foreground"
         }`}
       >
         All
@@ -28,16 +28,12 @@ export function CategoryFilter({ articles, selected, onSelect }: CategoryFilterP
           <button
             key={cat}
             onClick={() => onSelect(isSelected ? null : cat)}
-            className={`flex-shrink-0 flex items-center gap-2 text-xs font-semibold px-3.5 py-1.5 rounded-lg border transition-all duration-150 ${
+            className="flex-shrink-0 flex items-center gap-1.5 text-[11px] font-semibold tracking-wide uppercase px-3.5 py-1.5 rounded-full transition-all duration-150"
+            style={
               isSelected
-                ? "border-transparent"
-                : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 bg-background/60"
-            }`}
-            style={isSelected ? {
-              background: `${article.categoryColor}15`,
-              borderColor: `${article.categoryColor}40`,
-              color: article.categoryColor,
-            } : {}}
+                ? { background: `${article.categoryColor}18`, color: article.categoryColor, border: `1px solid ${article.categoryColor}35` }
+                : { color: "hsl(var(--muted-foreground))" }
+            }
           >
             <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: article.categoryColor }} />
             {cat}
