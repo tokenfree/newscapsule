@@ -22,7 +22,7 @@ export function LandingHero({ onShowNews }: LandingHeroProps) {
           <h1 className="text-[72px] sm:text-[100px] font-bold tracking-[-0.04em] text-foreground leading-[0.88]">
             What's
           </h1>
-          <h1 className="text-[72px] sm:text-[100px] font-bold tracking-[-0.04em] leading-[0.88] text-foreground/20">
+          <h1 className="text-[72px] sm:text-[100px] font-bold tracking-[-0.04em] leading-[0.88] text-red-500">
             happening
           </h1>
         </div>
