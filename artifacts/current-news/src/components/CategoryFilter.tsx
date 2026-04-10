@@ -10,10 +10,10 @@ export function CategoryFilter({ articles, selected, onSelect }: CategoryFilterP
   const categories = Array.from(new Set(articles.map((a) => a.category)));
 
   return (
-    <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 flex-wrap">
+    <div className="flex items-center gap-2 overflow-x-auto pb-0.5 flex-wrap">
       <button
         onClick={() => onSelect(null)}
-        className={`flex-shrink-0 text-[11px] font-semibold tracking-wide uppercase px-3.5 py-1.5 rounded-full transition-all duration-150 ${
+        className={`flex-shrink-0 text-[12px] font-semibold tracking-wide uppercase px-4 py-2 transition-all duration-150 ${
           selected === null
             ? "glass-card text-foreground"
             : "text-muted-foreground hover:text-foreground"
@@ -28,14 +28,14 @@ export function CategoryFilter({ articles, selected, onSelect }: CategoryFilterP
           <button
             key={cat}
             onClick={() => onSelect(isSelected ? null : cat)}
-            className="flex-shrink-0 flex items-center gap-1.5 text-[11px] font-semibold tracking-wide uppercase px-3.5 py-1.5 rounded-full transition-all duration-150"
+            className="flex-shrink-0 flex items-center gap-2 text-[12px] font-semibold tracking-wide uppercase px-4 py-2 transition-all duration-150"
             style={
               isSelected
-                ? { background: `${article.categoryColor}18`, color: article.categoryColor, border: `1px solid ${article.categoryColor}35` }
+                ? { background: `${article.categoryColor}18`, color: article.categoryColor, border: `2px solid ${article.categoryColor}50` }
                 : { color: "hsl(var(--muted-foreground))" }
             }
           >
-            <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: article.categoryColor }} />
+            <span className="w-2 h-2 flex-shrink-0" style={{ background: article.categoryColor }} />
             {cat}
           </button>
         );
