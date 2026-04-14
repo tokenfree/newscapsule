@@ -18,7 +18,7 @@ export function Header({ onShowNews, newsVisible }: HeaderProps) {
 
       {/* Center — wordmark */}
       <div className="absolute left-1/2 -translate-x-1/2">
-        <span className="text-[26px] font-bold tracking-[0.08em] text-red-500">Current News+</span>
+        <span className="text-[16px] font-bold tracking-[0.08em] text-red-500">Current News+</span>
       </div>
 
       {/* Right — controls */}
