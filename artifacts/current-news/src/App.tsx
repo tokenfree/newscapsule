@@ -17,7 +17,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-transparent text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <Header onShowNews={handleShowNews} newsVisible={newsVisible} />
       <main>
         {!newsVisible ? (

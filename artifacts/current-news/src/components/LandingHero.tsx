@@ -4,7 +4,7 @@ interface LandingHeroProps {
 
 export function LandingHero({ onShowNews }: LandingHeroProps) {
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden bg-transparent">
+    <div className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden bg-background">
       <div className="relative z-10 text-center max-w-2xl space-y-10">
 
         {/* Live pill */}
