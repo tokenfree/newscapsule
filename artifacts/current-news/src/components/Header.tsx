@@ -1,5 +1,4 @@
 import { ThemeToggle } from "./ThemeToggle";
-import { weekOf } from "@/data/newsData";
 
 interface HeaderProps {
   onShowNews: () => void;
@@ -12,15 +11,14 @@ export function Header({ onShowNews, newsVisible }: HeaderProps) {
       {/* Left — live indicator */}
       <div className="flex items-center gap-2.5">
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full glass-card">
-          <div className="w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400 pulse-dot" />
+          <div className="w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400" />
           <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-muted-foreground">Live</span>
         </div>
-        <span className="hidden sm:block text-[11px] text-muted-foreground font-mono opacity-60">{weekOf}</span>
       </div>
 
       {/* Center — wordmark */}
       <div className="absolute left-1/2 -translate-x-1/2">
-        <span className="text-[13px] font-bold tracking-[0.22em] uppercase text-foreground">Dispatch</span>
+        <span className="text-[26px] font-bold tracking-[0.08em] text-red-500">Current News+</span>
       </div>
 
       {/* Right — controls */}
