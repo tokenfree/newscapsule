@@ -28,7 +28,7 @@ export function NewsCard({ article, index }: NewsCardProps) {
         </div>
 
         {/* Headline */}
-        <h3 className="text-display text-[24px] italic leading-snug text-foreground tracking-tight flex-1">
+        <h3 className="text-display text-[24px] italic leading-snug text-foreground tracking-tight">
           {article.headline}
         </h3>
 
@@ -37,8 +37,11 @@ export function NewsCard({ article, index }: NewsCardProps) {
           {trimSummary(article.summary)}
         </p>
 
+        {/* Spacer */}
+        <div className="flex-1" />
+
         {/* Footer */}
-        <div className="flex items-center justify-between pt-4 border-t border-white/[0.07] mt-auto">
+        <div className="flex items-center justify-between pt-4 border-t border-white/[0.07]">
           <span className="text-[14px] font-semibold" style={{ color: "#ef4444" }}>{article.source}</span>
           <a
             href={article.url}
