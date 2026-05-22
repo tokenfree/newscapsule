@@ -8,15 +8,15 @@ export function LandingHero({ onShowNews }: LandingHeroProps) {
       <div className="relative z-10 text-center max-w-2xl space-y-10">
 
         <div className="space-y-1">
-          <h1 className="text-display text-[76px] sm:text-[108px] text-foreground leading-[0.88] tracking-[-0.03em]">
+          <h1 className="text-display text-[91px] sm:text-[130px] text-foreground leading-[0.88] tracking-[-0.03em]">
             What's
           </h1>
-          <h1 className="text-display text-[76px] sm:text-[108px] italic leading-[0.88] tracking-[-0.03em]" style={{ color: "#ef4444" }}>
+          <h1 className="text-display text-[91px] sm:text-[130px] italic leading-[0.88] tracking-[-0.03em]" style={{ color: "#ef4444" }}>
             happening.
           </h1>
         </div>
 
-        <p className="text-[16px] text-muted-foreground leading-relaxed max-w-sm mx-auto font-light">
+        <p className="text-[19px] text-muted-foreground leading-relaxed max-w-sm mx-auto font-light">
           The world's many news, summarized and delivered.
         </p>
 
@@ -26,16 +26,16 @@ export function LandingHero({ onShowNews }: LandingHeroProps) {
             { label: "Categories",   value: "7+"     },
             { label: "Updated",      value: "Hourly" },
           ].map((stat) => (
-            <div key={stat.label} className="glass px-5 py-4 rounded-2xl text-center min-w-[90px]">
+            <div key={stat.label} className="glass px-5 py-4 rounded-2xl text-center min-w-[108px]">
               <div className="text-display text-xl text-foreground">{stat.value}</div>
-              <div className="text-[10px] text-muted-foreground font-semibold tracking-[0.18em] uppercase mt-1">{stat.label}</div>
+              <div className="text-[12px] text-muted-foreground font-semibold tracking-[0.18em] uppercase mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
 
         <button
           onClick={onShowNews}
-          className="group inline-flex items-center gap-3 px-7 py-3.5 glass rounded-2xl text-[15px] font-medium tracking-tight transition-all duration-200 hover:opacity-75 active:scale-[0.98]"
+          className="group inline-flex items-center gap-3 px-7 py-3.5 glass rounded-2xl text-[18px] font-medium tracking-tight transition-all duration-200 hover:opacity-75 active:scale-[0.98]"
           style={{ color: "#ef4444" }}
         >
           News Capsule

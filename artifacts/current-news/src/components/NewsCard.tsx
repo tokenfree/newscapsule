@@ -16,7 +16,7 @@ export function NewsCard({ article, index }: NewsCardProps) {
         {/* Meta row */}
         <div className="flex items-center gap-2 flex-wrap">
           <span
-            className="text-[11px] font-semibold tracking-[0.18em] uppercase px-3 py-1.5 rounded-full"
+            className="text-[13px] font-semibold tracking-[0.18em] uppercase px-3 py-1.5 rounded-full"
             style={{
               color: article.categoryColor,
               background: `${article.categoryColor}18`,
@@ -28,23 +28,23 @@ export function NewsCard({ article, index }: NewsCardProps) {
         </div>
 
         {/* Headline */}
-        <h3 className="text-display text-[20px] italic leading-snug text-foreground tracking-tight flex-1">
+        <h3 className="text-display text-[24px] italic leading-snug text-foreground tracking-tight flex-1">
           {article.headline}
         </h3>
 
         {/* Summary */}
-        <p className="text-[14.5px] text-muted-foreground leading-relaxed">
+        <p className="text-[17px] text-muted-foreground leading-relaxed">
           {trimSummary(article.summary)}
         </p>
 
         {/* Footer */}
         <div className="flex items-center justify-between pt-4 border-t border-white/[0.07] mt-auto">
-          <span className="text-[12px] font-semibold" style={{ color: "#ef4444" }}>{article.source}</span>
+          <span className="text-[14px] font-semibold" style={{ color: "#ef4444" }}>{article.source}</span>
           <a
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-[12px] font-semibold text-foreground/40 hover:text-foreground transition-colors duration-150"
+            className="flex items-center gap-1.5 text-[14px] font-semibold text-foreground/40 hover:text-foreground transition-colors duration-150"
             onClick={(e) => e.stopPropagation()}
           >
             Read

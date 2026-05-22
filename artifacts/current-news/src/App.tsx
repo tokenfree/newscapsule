@@ -23,7 +23,7 @@ function AppContent() {
         {!newsVisible ? (
           <LandingHero onShowNews={handleShowNews} />
         ) : (
-          <div id="news-section" className="pt-[52px]">
+          <div id="news-section" className="pt-[62px]">
             <NewsGrid />
           </div>
         )}

@@ -13,7 +13,7 @@ export function FeaturedCard({ article }: FeaturedCardProps) {
         {/* Meta */}
         <div className="flex items-center gap-2.5">
           <span
-            className="text-[11px] font-semibold tracking-[0.18em] uppercase px-3.5 py-1.5 rounded-full"
+            className="text-[13px] font-semibold tracking-[0.18em] uppercase px-3.5 py-1.5 rounded-full"
             style={{
               color: article.categoryColor,
               background: `${article.categoryColor}18`,
@@ -22,18 +22,18 @@ export function FeaturedCard({ article }: FeaturedCardProps) {
           >
             {article.category}
           </span>
-          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase px-3.5 py-1.5 rounded-full glass-strong text-foreground/30">
+          <span className="text-[13px] font-semibold tracking-[0.18em] uppercase px-3.5 py-1.5 rounded-full glass-strong text-foreground/30">
             Featured
           </span>
         </div>
 
         {/* Headline */}
-        <h2 className="text-display text-[2.2rem] sm:text-[2.8rem] italic leading-tight text-foreground tracking-tight">
+        <h2 className="text-display text-[2.64rem] sm:text-[3.36rem] italic leading-tight text-foreground tracking-tight">
           {article.headline}
         </h2>
 
         {/* Summary */}
-        <p className="text-[17px] text-muted-foreground leading-relaxed max-w-3xl font-light">
+        <p className="text-[20px] text-muted-foreground leading-relaxed max-w-3xl font-light">
           {trimSummary(article.summary)}
         </p>
 
@@ -42,15 +42,15 @@ export function FeaturedCard({ article }: FeaturedCardProps) {
           <div className="flex items-center gap-3">
             <div className="w-px h-6 bg-white/20" />
             <div>
-              <div className="text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground/60">Source</div>
-              <div className="text-[14px] font-semibold mt-0.5" style={{ color: "#ef4444" }}>{article.source}</div>
+              <div className="text-[12px] font-semibold tracking-[0.2em] uppercase text-muted-foreground/60">Source</div>
+              <div className="text-[17px] font-semibold mt-0.5" style={{ color: "#ef4444" }}>{article.source}</div>
             </div>
           </div>
           <a
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="glass flex items-center gap-2 rounded-full px-5 py-2.5 text-[13px] font-medium text-foreground hover:opacity-75 active:scale-95 transition-all duration-150"
+            className="glass flex items-center gap-2 rounded-full px-5 py-2.5 text-[16px] font-medium text-foreground hover:opacity-75 active:scale-95 transition-all duration-150"
           >
             Full Story
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
