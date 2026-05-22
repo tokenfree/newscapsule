@@ -20,13 +20,13 @@ export function LandingHero({ onShowNews }: LandingHeroProps) {
           <h1 className="text-display text-[76px] sm:text-[108px] text-foreground leading-[0.88] tracking-[-0.03em]">
             What's
           </h1>
-          <h1 className="text-display text-[76px] sm:text-[108px] italic text-foreground/50 leading-[0.88] tracking-[-0.03em]">
+          <h1 className="text-display text-[76px] sm:text-[108px] italic leading-[0.88] tracking-[-0.03em]" style={{ color: "#ef4444" }}>
             happening.
           </h1>
         </div>
 
         <p className="text-[16px] text-muted-foreground leading-relaxed max-w-sm mx-auto font-light">
-          The world's most significant events, summarized and delivered in real time.
+          The world's many news, summarized and delivered.
         </p>
 
         <div className="flex items-center justify-center gap-3">
