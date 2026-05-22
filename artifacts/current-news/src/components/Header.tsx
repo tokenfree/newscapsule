@@ -1,5 +1,3 @@
-import { ThemeToggle } from "./ThemeToggle";
-
 interface HeaderProps {
   onShowNews: () => void;
   newsVisible: boolean;
@@ -8,29 +6,23 @@ interface HeaderProps {
 export function Header({ onShowNews, newsVisible }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 h-[52px] header-glass">
-      {/* Left — live indicator */}
-      <div className="flex items-center gap-2.5">
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full glass-card">
-          <div className="w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400" />
-          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-muted-foreground">Live</span>
-        </div>
+      <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full glass">
+        <div className="w-1.5 h-1.5 rounded-full bg-white/60 pulse-dot" />
+        <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground">Live</span>
       </div>
 
-      {/* Center — wordmark */}
       <div className="absolute left-1/2 -translate-x-1/2">
-        <span className="text-[16px] font-bold tracking-[0.08em] text-red-500">Current News+</span>
+        <span className="text-display text-[18px] italic text-foreground/90 tracking-tight">
+          News Capsule
+        </span>
       </div>
 
-      {/* Right — controls */}
-      <div className="flex items-center gap-2">
-        <ThemeToggle />
-        <button
-          onClick={onShowNews}
-          className="px-4 py-1.5 rounded-full glass-card text-xs font-semibold tracking-wide text-foreground transition-all duration-150 hover:opacity-80 active:scale-95"
-        >
-          {newsVisible ? "Home" : "News"}
-        </button>
-      </div>
+      <button
+        onClick={onShowNews}
+        className="glass flex items-center gap-2 rounded-full px-4 py-1.5 text-[12px] font-medium text-muted-foreground transition hover:text-foreground hover:bg-white/10"
+      >
+        {newsVisible ? "Home" : "Briefing"}
+      </button>
     </header>
   );
 }

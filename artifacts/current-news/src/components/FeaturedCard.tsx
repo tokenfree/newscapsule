@@ -7,54 +7,43 @@ interface FeaturedCardProps {
 
 export function FeaturedCard({ article }: FeaturedCardProps) {
   return (
-    <article className="news-card glass-card news-card-sharp relative overflow-hidden stagger-1">
-      <div className="h-[4px] w-full flex-shrink-0" style={{ background: article.categoryColor }} />
-
+    <article className="news-card glass rounded-3xl overflow-hidden stagger-1">
       <div className="p-9 sm:p-12 space-y-7">
-        {/* Top row */}
         <div className="flex items-center gap-2.5">
-          <span
-            className="text-[13px] font-semibold tracking-wide uppercase px-3 py-1.5"
-            style={{ color: article.categoryColor, background: `${article.categoryColor}18`, border: `1px solid ${article.categoryColor}35` }}
-          >
+          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase px-3.5 py-1.5 rounded-full glass text-muted-foreground">
             {article.category}
           </span>
-          {article.significance === "critical" && (
-            <span className="text-[13px] font-semibold tracking-wide uppercase px-3 py-1.5 bg-red-500/10 text-red-500 dark:text-red-400">
-              Critical
+          {(article.significance === "critical" || article.significance === "high") && (
+            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase px-3.5 py-1.5 rounded-full glass text-muted-foreground/60">
+              {article.significance === "critical" ? "Critical" : "High Impact"}
             </span>
           )}
-          {article.significance === "high" && (
-            <span className="text-[13px] font-semibold tracking-wide uppercase px-3 py-1.5 bg-amber-500/10 text-amber-600 dark:text-amber-400">
-              High Impact
-            </span>
-          )}
+          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase px-3.5 py-1.5 rounded-full glass-strong text-foreground/30">
+            Featured
+          </span>
         </div>
 
-        {/* Headline */}
-        <h2 className="text-[2rem] sm:text-[2.4rem] font-bold italic leading-tight text-foreground tracking-[-0.02em]" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
+        <h2 className="text-display text-[2.2rem] sm:text-[2.8rem] italic leading-tight text-foreground tracking-tight">
           {article.headline}
         </h2>
 
-        {/* Summary */}
-        <p className="text-[18.5px] text-muted-foreground leading-relaxed max-w-3xl">
+        <p className="text-[17px] text-muted-foreground leading-relaxed max-w-3xl font-light">
           {trimSummary(article.summary)}
         </p>
 
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-6 border-t-2 border-border/40 flex-wrap gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-[4px] h-6" style={{ background: article.categoryColor }} />
+        <div className="flex items-center justify-between pt-6 border-t border-white/[0.07] flex-wrap gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-px h-6 bg-white/20" />
             <div>
-              <div className="text-[11px] font-semibold tracking-[0.16em] uppercase text-muted-foreground">Source</div>
-              <div className="text-[15px] font-semibold text-foreground mt-0.5">{article.source}</div>
+              <div className="text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground/60">Source</div>
+              <div className="text-[14px] font-medium text-foreground mt-0.5">{article.source}</div>
             </div>
           </div>
           <a
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-2.5 glass-card text-[13px] font-semibold text-foreground hover:opacity-75 active:scale-95 transition-all duration-150"
+            className="glass flex items-center gap-2 rounded-full px-5 py-2.5 text-[13px] font-medium text-foreground hover:opacity-75 active:scale-95 transition-all duration-150"
           >
             Full Story
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
