@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useGetNews } from "@workspace/api-client-react";
 import { FeaturedCard } from "./FeaturedCard";
 import { NewsCard } from "./NewsCard";
-import { SignificanceBar } from "./SignificanceBar";
 import { CategoryFilter } from "./CategoryFilter";
 import type { NewsArticle } from "@workspace/api-client-react";
 
@@ -55,8 +54,6 @@ export function NewsGrid() {
 
   return (
     <div className="noise min-h-screen">
-      {articles.length > 0 && <SignificanceBar articles={articles} />}
-
       {isError && (
         <div className="flex flex-col items-center justify-center py-10 gap-4 border-b border-white/[0.07]">
           <p className="text-sm text-muted-foreground font-medium">
