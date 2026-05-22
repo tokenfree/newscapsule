@@ -22,11 +22,6 @@ export function FeaturedCard({ article }: FeaturedCardProps) {
           >
             {article.category}
           </span>
-          {(article.significance === "critical" || article.significance === "high") && (
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase px-3.5 py-1.5 rounded-full glass text-muted-foreground/60">
-              {article.significance === "critical" ? "Critical" : "High Impact"}
-            </span>
-          )}
           <span className="text-[11px] font-semibold tracking-[0.18em] uppercase px-3.5 py-1.5 rounded-full glass-strong text-foreground/30">
             Featured
           </span>

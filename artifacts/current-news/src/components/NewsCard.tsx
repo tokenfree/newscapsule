@@ -6,12 +6,6 @@ interface NewsCardProps {
   index: number;
 }
 
-const SIGNIFICANCE_LABELS: Record<string, string> = {
-  critical: "Critical",
-  high:     "High",
-  medium:   "Medium",
-};
-
 export function NewsCard({ article, index }: NewsCardProps) {
   const staggerClass = `stagger-${Math.min(index + 1, 8)}`;
 
@@ -30,9 +24,6 @@ export function NewsCard({ article, index }: NewsCardProps) {
             }}
           >
             {article.category}
-          </span>
-          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase px-3 py-1.5 rounded-full glass text-muted-foreground/60">
-            {SIGNIFICANCE_LABELS[article.significance] ?? "Medium"}
           </span>
         </div>
 
