@@ -6,12 +6,6 @@ interface NewsCardProps {
   index: number;
 }
 
-const SIGNIFICANCE_STYLES: Record<string, string> = {
-  critical: "bg-red-500/10 text-red-500 dark:text-red-400",
-  high:     "bg-amber-500/10 text-amber-600 dark:text-amber-400",
-  medium:   "bg-blue-500/10 text-blue-600 dark:text-blue-400",
-};
-
 const SIGNIFICANCE_LABELS: Record<string, string> = {
   critical: "Critical",
   high:     "High",
@@ -22,50 +16,41 @@ export function NewsCard({ article, index }: NewsCardProps) {
   const staggerClass = `stagger-${Math.min(index + 1, 8)}`;
 
   return (
-    <article className={`news-card glass-card news-card-sharp flex flex-col overflow-hidden ${staggerClass}`}>
-      {/* Top color bar */}
-      <div className="h-[4px] w-full flex-shrink-0" style={{ background: article.categoryColor }} />
-
+    <article className={`news-card glass rounded-3xl flex flex-col overflow-hidden ${staggerClass}`}>
       <div className="flex flex-col flex-1 p-7 gap-5">
-        {/* Meta */}
+
+        {/* Meta row */}
         <div className="flex items-center gap-2 flex-wrap">
-          <span
-            className="text-[13px] font-semibold tracking-wide uppercase px-3 py-1.5"
-            style={{ color: article.categoryColor, background: `${article.categoryColor}18`, border: `1px solid ${article.categoryColor}35` }}
-          >
+          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase px-3 py-1.5 rounded-full glass text-muted-foreground">
             {article.category}
           </span>
-          <span
-            className={`text-[13px] font-semibold tracking-wide uppercase px-3 py-1.5 ${
-              SIGNIFICANCE_STYLES[article.significance] ?? SIGNIFICANCE_STYLES.medium
-            }`}
-          >
+          <span className="text-[11px] font-semibold tracking-[0.18em] uppercase px-3 py-1.5 rounded-full glass text-muted-foreground/60">
             {SIGNIFICANCE_LABELS[article.significance] ?? "Medium"}
           </span>
         </div>
 
         {/* Headline */}
-        <h3 className="text-[19px] font-semibold italic leading-snug text-foreground tracking-[-0.01em]" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
+        <h3 className="text-display text-[20px] italic leading-snug text-foreground tracking-tight flex-1">
           {article.headline}
         </h3>
 
         {/* Summary */}
-        <p className="text-[16.5px] text-muted-foreground leading-relaxed flex-1">
+        <p className="text-[14.5px] text-muted-foreground leading-relaxed">
           {trimSummary(article.summary)}
         </p>
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-4 border-t-2 border-border/40 mt-auto">
-          <span className="text-[13px] text-muted-foreground font-medium">{article.source}</span>
+        <div className="flex items-center justify-between pt-4 border-t border-white/[0.07] mt-auto">
+          <span className="text-[12px] text-muted-foreground font-medium">{article.source}</span>
           <a
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-[13px] font-semibold text-foreground/50 hover:text-foreground transition-colors duration-150"
+            className="flex items-center gap-1.5 text-[12px] font-semibold text-foreground/40 hover:text-foreground transition-colors duration-150"
             onClick={(e) => e.stopPropagation()}
           >
             Read
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
           </a>
