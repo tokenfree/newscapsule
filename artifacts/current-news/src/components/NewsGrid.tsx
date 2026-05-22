@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useGetNews } from "@workspace/api-client-react";
 import { FeaturedCard } from "./FeaturedCard";
 import { NewsCard } from "./NewsCard";
+import { SignificanceBar } from "./SignificanceBar";
+import { CategoryFilter } from "./CategoryFilter";
 import type { NewsArticle } from "@workspace/api-client-react";
 
 function SkeletonCard({ featured = false }: { featured?: boolean }) {
@@ -27,6 +29,8 @@ function SkeletonCard({ featured = false }: { featured?: boolean }) {
 }
 
 export function NewsGrid() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
   const { data, isLoading, isError, refetch, dataUpdatedAt } = useGetNews(
     { pageSize: 20 },
     { query: { staleTime: 30 * 60 * 1000, retry: 2 } }
@@ -35,6 +39,15 @@ export function NewsGrid() {
   const articles: NewsArticle[] = data?.articles ?? [];
   const featuredArticle = articles[0] ?? null;
   const otherArticles   = articles.slice(1);
+  const categories      = Array.from(new Set(articles.map((a) => a.category)));
+
+  const filteredOthers = selectedCategory
+    ? otherArticles.filter((a) => a.category === selectedCategory)
+    : otherArticles;
+
+  const showFeatured =
+    !selectedCategory ||
+    (featuredArticle && selectedCategory === featuredArticle.category);
 
   const lastFetched = dataUpdatedAt
     ? new Date(dataUpdatedAt).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })
@@ -42,6 +55,8 @@ export function NewsGrid() {
 
   return (
     <div className="noise min-h-screen">
+      {articles.length > 0 && <SignificanceBar articles={articles} />}
+
       {isError && (
         <div className="flex flex-col items-center justify-center py-10 gap-4 border-b border-white/[0.07]">
           <p className="text-sm text-muted-foreground font-medium">
@@ -57,27 +72,39 @@ export function NewsGrid() {
       )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
-        <div className="space-y-1.5">
-          <div className="flex items-center gap-3">
-            <h2 className="text-display text-3xl italic text-foreground tracking-tight">
-              Live Briefing
-            </h2>
-            {isLoading && (
-              <div className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground">
-                <div className="w-1.5 h-1.5 rounded-full bg-white/30 pulse-dot" />
-                Fetching…
-              </div>
-            )}
-            {!isLoading && lastFetched && (
-              <div className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground">
-                <div className="w-1.5 h-1.5 rounded-full bg-white/50" />
-                {lastFetched}
-              </div>
-            )}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-3">
+              <h2 className="text-display text-3xl italic text-foreground tracking-tight">
+                Live Briefing
+              </h2>
+              {isLoading && (
+                <div className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white/30 pulse-dot" />
+                  Fetching…
+                </div>
+              )}
+              {!isLoading && lastFetched && (
+                <div className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white/50" />
+                  {lastFetched}
+                </div>
+              )}
+            </div>
+            <p className="text-sm text-muted-foreground font-mono tracking-wide">
+              {isLoading
+                ? "Loading headlines…"
+                : `${filteredOthers.length + (showFeatured && featuredArticle ? 1 : 0)} stories · ${selectedCategory || "All categories"}`}
+            </p>
           </div>
-          <p className="text-sm text-muted-foreground font-mono tracking-wide">
-            {isLoading ? "Loading headlines…" : `${articles.length} stories`}
-          </p>
+
+          {categories.length > 0 && (
+            <CategoryFilter
+              articles={articles}
+              selected={selectedCategory}
+              onSelect={setSelectedCategory}
+            />
+          )}
         </div>
 
         {isLoading && (
@@ -91,12 +118,23 @@ export function NewsGrid() {
 
         {!isLoading && articles.length > 0 && (
           <>
-            {featuredArticle && <FeaturedCard article={featuredArticle} />}
-            {otherArticles.length > 0 && (
+            {showFeatured && featuredArticle && (
+              <FeaturedCard article={featuredArticle} />
+            )}
+            {filteredOthers.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-                {otherArticles.map((article, index) => (
+                {filteredOthers.map((article, index) => (
                   <NewsCard key={article.id} article={article} index={index} />
                 ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-24 text-muted-foreground space-y-3">
+                <div className="w-11 h-11 rounded-full glass flex items-center justify-center">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <p className="text-sm">No stories in this category.</p>
               </div>
             )}
           </>
