@@ -28,6 +28,7 @@
   --radius-xl: calc(var(--radius) + 8px);
 }
 
+/* ─── Dark mode (default) ─── */
 :root {
   --radius: 1rem;
   --background: oklch(0.08 0 0);
@@ -58,6 +59,54 @@
 
   --header-bg: oklch(0.08 0 0 / 0.82);
   --header-border: oklch(1 0 0 / 0.08);
+
+  --settings-bg: oklch(0.1 0 0);
+  --settings-border: oklch(1 0 0 / 0.09);
+  --settings-item-bg: oklch(1 0 0 / 0.04);
+  --settings-item-border: oklch(1 0 0 / 0.09);
+  --settings-track-bg: oklch(1 0 0 / 0.1);
+  --settings-thumb-bg: oklch(0.22 0 0);
+  --settings-thumb-color: oklch(0.75 0 0);
+}
+
+/* ─── Light mode ─── */
+[data-theme="light"] {
+  --background: oklch(0.96 0 0);
+  --foreground: oklch(0.1 0 0);
+  --card: oklch(1 0 0 / 0.7);
+  --card-foreground: oklch(0.1 0 0);
+  --popover: oklch(0.98 0 0 / 0.95);
+  --popover-foreground: oklch(0.1 0 0);
+  --primary: oklch(0.1 0 0);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.9 0 0 / 0.6);
+  --secondary-foreground: oklch(0.1 0 0);
+  --muted: oklch(0.88 0 0 / 0.5);
+  --muted-foreground: oklch(0.48 0 0);
+  --accent: oklch(0.88 0 0 / 0.6);
+  --accent-foreground: oklch(0.1 0 0);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0 0 0 / 0.1);
+  --input: oklch(0 0 0 / 0.06);
+  --ring: oklch(0 0 0 / 0.2);
+
+  --glass-bg: oklch(1 0 0 / 0.65);
+  --glass-border: oklch(0 0 0 / 0.09);
+  --glass-highlight: oklch(1 0 0 / 0.9);
+  --glass-shadow: 0 8px 32px 0 oklch(0 0 0 / 0.1);
+  --glass-hover-shadow: 0 16px 56px 0 oklch(0 0 0 / 0.16);
+
+  --header-bg: oklch(0.96 0 0 / 0.86);
+  --header-border: oklch(0 0 0 / 0.08);
+
+  --settings-bg: oklch(0.97 0 0);
+  --settings-border: oklch(0 0 0 / 0.09);
+  --settings-item-bg: oklch(0 0 0 / 0.03);
+  --settings-item-border: oklch(0 0 0 / 0.08);
+  --settings-track-bg: oklch(0 0 0 / 0.1);
+  --settings-thumb-bg: oklch(1 0 0);
+  --settings-thumb-color: oklch(0.35 0 0);
 }
 
 @layer base {
@@ -114,6 +163,7 @@
   }
 }
 
+/* ─── News card ─── */
 .news-card {
   transition: transform 0.22s cubic-bezier(0.34, 1.4, 0.64, 1),
               box-shadow 0.22s ease;
@@ -123,6 +173,7 @@
   box-shadow: var(--glass-hover-shadow), inset 0 1px 0 0 var(--glass-highlight);
 }
 
+/* ─── Animations ─── */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
   50%       { opacity: 0.3; transform: scale(0.65); }
@@ -142,6 +193,165 @@
 .stagger-7 { animation: fadeSlideUp 0.5s 0.42s cubic-bezier(0.34,1.2,0.64,1) both; }
 .stagger-8 { animation: fadeSlideUp 0.5s 0.49s cubic-bezier(0.34,1.2,0.64,1) both; }
 
+/* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: oklch(1 0 0 / 0.15); border-radius: 2px; }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: oklch(0 0 0 / 0.15); }
+
+/* ════════════════════════════════════════
+   Settings overlay
+   ════════════════════════════════════════ */
+.nc-settings-overlay {
+  position: fixed;
+  inset: 0;
+  background: oklch(0 0 0 / 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+.nc-settings-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ════════════════════════════════════════
+   Settings panel
+   ════════════════════════════════════════ */
+.nc-settings-panel {
+  position: fixed;
+  top: 0;
+  right: -430px;
+  width: min(430px, 100%);
+  height: 100vh;
+  background: var(--settings-bg);
+  border-left: 1px solid var(--settings-border);
+  box-shadow: -24px 0 70px oklch(0 0 0 / 0.35);
+  z-index: 91;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+}
+.nc-settings-panel.active {
+  right: 0;
+}
+
+.nc-settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 1.75rem;
+  border-bottom: 1px solid var(--settings-border);
+}
+
+.nc-settings-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.nc-settings-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.nc-settings-close:hover {
+  background: var(--settings-item-bg);
+  color: var(--foreground);
+}
+.nc-settings-close:active {
+  transform: scale(0.9);
+  transition: transform 0.07s ease;
+}
+
+.nc-settings-content {
+  padding: 1.5rem 1.75rem;
+}
+
+.nc-setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.25rem;
+  background: var(--settings-item-bg);
+  border: 1px solid var(--settings-item-border);
+  border-radius: 14px;
+}
+
+.nc-setting-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+/* ════════════════════════════════════════
+   Toggle switch (matches Bar Synapse)
+   ════════════════════════════════════════ */
+.nc-toggle-switch {
+  position: relative;
+  width: 75px;
+  height: 42px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+.nc-toggle-switch:active {
+  transform: scale(0.95);
+}
+
+.nc-switch-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--settings-track-bg);
+  border-radius: 21px;
+  border: 1px solid var(--settings-item-border);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 2px 4px oklch(0 0 0 / 0.15);
+}
+
+.nc-switch-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 33px;
+  height: 33px;
+  background: var(--settings-thumb-bg);
+  border-radius: 50%;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0);
+  box-shadow: 0 2px 6px oklch(0 0 0 / 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--settings-thumb-color);
+  user-select: none;
+  line-height: 1;
+}
+
+/* Light mode = thumb slides right */
+[data-theme="light"] .nc-switch-thumb {
+  transform: translateX(33px);
+}
+
+.nc-toggle-switch:active .nc-switch-thumb {
+  transform: translateX(0) scale(0.92);
+}
+[data-theme="light"] .nc-toggle-switch:active .nc-switch-thumb {
+  transform: translateX(33px) scale(0.92);
+}

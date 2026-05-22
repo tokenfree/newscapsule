@@ -9,6 +9,18 @@ const queryClient = new QueryClient();
 function AppContent() {
   const [newsVisible, setNewsVisible] = useState(false);
   const [focusModeActive, setFocusModeActive] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
+
+  const handleToggleDark = () => {
+    const next = !isDark;
+    setIsDark(next);
+    if (next) {
+      document.documentElement.removeAttribute("data-theme");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  };
 
   const handleShowNews = () => {
     setNewsVisible(true);
@@ -27,6 +39,11 @@ function AppContent() {
         newsVisible={newsVisible}
         focusModeActive={focusModeActive}
         onToggleFocus={handleToggleFocus}
+        settingsOpen={settingsOpen}
+        onToggleSettings={() => setSettingsOpen((v) => !v)}
+        onCloseSettings={() => setSettingsOpen(false)}
+        isDark={isDark}
+        onToggleDark={handleToggleDark}
       />
       <main>
         {!newsVisible ? (
